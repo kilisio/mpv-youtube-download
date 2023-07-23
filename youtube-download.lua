@@ -425,6 +425,12 @@ local function download(download_type, config_file, overwrite_opts)
     local range_mode_subtitle_file_name = nil
     local start_time_offset = 0
 
+    -- table.insert(command, "xterm")
+    -- table.insert(command, "-hold")
+    -- table.insert(command, "-e")
+    table.insert(command, "xfce4-terminal")
+    table.insert(command, "-H")
+    table.insert(command, "-x")
     if download_type == DOWNLOAD.CONFIG_FILE then
         table.insert(command, opts.youtube_dl_exe)
         table.insert(command, "--config-location")
@@ -432,6 +438,8 @@ local function download(download_type, config_file, overwrite_opts)
         table.insert(command, url)
     elseif select_range_mode == 0 or (select_range_mode > 0 and (download_type == DOWNLOAD.AUDIO or download_type == DOWNLOAD.SUBTITLE)) then
         table.insert(command, opts.youtube_dl_exe)
+        table.insert(command, "--downloader")
+        table.insert(command, "aria2c")
         table.insert(command, "--no-overwrites")
         if opts.restrict_filenames then
           table.insert(command, "--restrict-filenames")
