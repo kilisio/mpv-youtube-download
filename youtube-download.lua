@@ -987,7 +987,7 @@ local function download(download_type, config_file, overwrite_opts)
         msg.debug("exec (async): " .. table.concat(command, " "))
     end
 
-    process_id = exec_async(command, true, true, download_ended)
+    process_id = exec_async(command, false, false, download_ended)
 
 end
 
