@@ -168,6 +168,7 @@ local function exec_async(args, capture_stdout, capture_stderr, callback)
         capture_stdout = capture_stdout,
         capture_stderr = capture_stderr,
         args = args,
+        detach = true,
     }, callback)
 end
 
